@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Elite Banquet Staffing — Our Services</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --gold: #c9a84c;
+      --gold-light: #e8d5a3;
+      --gold-dim: #9a7e3a;
+      --black: #080808;
+      --dark: #0f0f0f;
+      --dark2: #151515;
+      --off-white: #f4efe6;
+      --text-muted: #7a7870;
+      --white: #ffffff;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--off-white);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 22px 60px;
+      border-bottom: 1px solid rgba(201,168,76,0.18);
+      background: rgba(8,8,8,0.92);
+      backdrop-filter: blur(16px);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* ── HERO with NYC Skyline ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 120px 40px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1522083165195-3424ed129620?w=1800&q=80');
+      background-size: cover;
+      background-position: center bottom;
+      filter: brightness(0.25) saturate(0.6);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(8,8,8,0.5) 0%, rgba(8,8,8,0.2) 50%, rgba(8,8,8,0.85) 100%);
+    }
+
+    .hero-content { position: relative; z-index: 2; }
+
+    .hero-eyebrow {
+      font-size: 0.62rem;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 26px;
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards 0.2s;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.2rem, 8.5vw, 7.5rem);
+      font-weight: 300;
+      line-height: 1.02;
+      letter-spacing: 0.02em;
+      color: var(--white);
+      opacity: 0;
+      animation: fadeUp 1s ease forwards 0.4s;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-divider {
+      width: 56px;
+      height: 1px;
+      background: var(--gold);
+      margin: 34px auto;
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards 0.6s;
+    }
+
+    .hero-sub {
+      font-size: 0.76rem;
+      letter-spacing: 0.1em;
+      color: rgba(244,239,230,0.75);
+      max-width: 460px;
+      line-height: 2.1;
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards 0.8s;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards 1.2s;
+    }
+
+    .hero-scroll span {
+      font-size: 0.55rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.1); }
+    }
+
+    /* ── QUOTE STRIP ── */
+    .quote-strip {
+      background: var(--dark2);
+      border-top: 1px solid rgba(201,168,76,0.2);
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+      padding: 56px 60px;
+      text-align: center;
+    }
+
+    .quote-strip p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.15rem, 2.2vw, 1.6rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--off-white);
+      max-width: 720px;
+      margin: 0 auto;
+      line-height: 1.75;
+    }
+
+    /* ── SECTION WRAPPER ── */
+    .section {
+      padding: 100px 60px;
+      max-width: 1260px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.58rem;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin-bottom: 14px;
+    }
+
+    /* ── PHOTO GALLERY STRIP ── */
+    .photo-strip {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr 1.2fr;
+      height: 340px;
+      overflow: hidden;
+    }
+
+    .photo-strip-item {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .photo-strip-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.7) saturate(0.8);
+      transition: transform 0.7s ease, filter 0.7s ease;
+    }
+
+    .photo-strip-item:hover img {
+      transform: scale(1.06);
+      filter: brightness(0.85) saturate(1);
+    }
+
+    .photo-strip-item .photo-label {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      font-size: 0.58rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .photo-strip-item:hover .photo-label { opacity: 1; }
+
+    /* ── SERVICE FEATURE ROWS ── */
+    .service-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border: 1px solid rgba(201,168,76,0.12);
+      margin-bottom: 2px;
+      overflow: hidden;
+    }
+
+    .service-row.reverse { direction: rtl; }
+    .service-row.reverse > * { direction: ltr; }
+
+    .service-img {
+      overflow: hidden;
+      height: 500px;
+    }
+
+    .service-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.75) saturate(0.85);
+      transition: transform 0.8s ease, filter 0.8s ease;
+    }
+
+    .service-row:hover .service-img img {
+      transform: scale(1.04);
+      filter: brightness(0.85) saturate(1);
+    }
+
+    .service-content {
+      background: var(--dark);
+      padding: 70px 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+
+    .service-content::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px;
+      height: 0;
+      background: var(--gold);
+      transition: height 0.6s ease;
+    }
+
+    .service-row:hover .service-content::before { height: 100%; }
+
+    .service-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem;
+      font-weight: 300;
+      color: rgba(201,168,76,0.1);
+      line-height: 1;
+      margin-bottom: 24px;
+    }
+
+    .service-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.6rem;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      color: var(--off-white);
+      margin-bottom: 8px;
+      line-height: 1.1;
+    }
+
+    .service-tagline {
+      font-size: 0.58rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 28px;
+    }
+
+    .service-divider {
+      width: 40px;
+      height: 1px;
+      background: rgba(201,168,76,0.35);
+      margin-bottom: 28px;
+    }
+
+    .service-body {
+      font-size: 0.78rem;
+      line-height: 2.1;
+      color: var(--text-muted);
+      letter-spacing: 0.03em;
+    }
+
+    .service-body p + p { margin-top: 14px; }
+
+    /* ── NYC SKYLINE BANNER ── */
+    .skyline-banner {
+      position: relative;
+      height: 420px;
+      overflow: hidden;
+    }
+
+    .skyline-banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      filter: brightness(0.35) saturate(0.5);
+    }
+
+    .skyline-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(8,8,8,0.6) 0%, transparent 40%, transparent 60%, rgba(8,8,8,0.6) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 40px;
+    }
+
+    .skyline-overlay .skyline-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .skyline-overlay h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.2;
+    }
+
+    .skyline-overlay h2 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    /* ── PHOTO GALLERY (3 col) ── */
+    .gallery-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 3px;
+    }
+
+    .gallery-3-item {
+      overflow: hidden;
+      height: 280px;
+      position: relative;
+    }
+
+    .gallery-3-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.65) saturate(0.75);
+      transition: transform 0.7s ease, filter 0.6s ease;
+    }
+
+    .gallery-3-item:hover img {
+      transform: scale(1.07);
+      filter: brightness(0.8) saturate(1);
+    }
+
+    /* ── UNIFORM SECTION ── */
+    .uniform-section {
+      padding: 100px 60px;
+      background: var(--dark2);
+      border-top: 1px solid rgba(201,168,76,0.1);
+      border-bottom: 1px solid rgba(201,168,76,0.1);
+    }
+
+    .uniform-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .uniform-left h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--off-white);
+      margin-bottom: 20px;
+    }
+
+    .uniform-left h2 em { font-style: italic; color: var(--gold); }
+
+    .uniform-left p {
+      font-size: 0.78rem;
+      line-height: 2;
+      color: var(--text-muted);
+      letter-spacing: 0.03em;
+    }
+
+    .uniform-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 36px;
+    }
+
+    .uniform-list li {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--off-white);
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .uniform-list li::before {
+      content: '';
+      display: inline-block;
+      width: 22px;
+      height: 1px;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .uniform-img {
+      height: 480px;
+      overflow: hidden;
+      border: 1px solid rgba(201,168,76,0.12);
+    }
+
+    .uniform-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      filter: brightness(0.8) saturate(0.85);
+      transition: transform 0.7s ease;
+    }
+
+    .uniform-img:hover img { transform: scale(1.04); }
+
+    /* ── NYC SKYLINE 2nd (wide) ── */
+    .skyline-wide {
+      height: 360px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .skyline-wide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 40%;
+      filter: brightness(0.3) saturate(0.4);
+      transition: transform 1s ease;
+    }
+
+    .skyline-wide:hover img { transform: scale(1.03); }
+
+    .skyline-wide-text {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .skyline-wide-text p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.4rem, 3vw, 2.8rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--off-white);
+      text-align: center;
+      max-width: 700px;
+      padding: 0 40px;
+      line-height: 1.6;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      text-align: center;
+      padding: 130px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 50% 60% at 50% 50%, rgba(201,168,76,0.055) 0%, transparent 70%);
+    }
+
+    .cta-section h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 5.5vw, 4.8rem);
+      font-weight: 300;
+      color: var(--off-white);
+      margin-bottom: 18px;
+      position: relative;
+    }
+
+    .cta-section h2 em { font-style: italic; color: var(--gold); }
+
+    .cta-section p {
+      font-size: 0.74rem;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 48px;
+      position: relative;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      padding: 18px 54px;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.63rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      transition: color 0.4s ease;
+    }
+
+    .cta-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gold);
+      transform: translateX(-101%);
+      transition: transform 0.4s ease;
+      z-index: 0;
+    }
+
+    .cta-btn span { position: relative; z-index: 1; }
+    .cta-btn:hover { color: var(--black); }
+    .cta-btn:hover::before { transform: translateX(0); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid rgba(201,168,76,0.15);
+      padding: 36px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .footer-copy {
+      font-size: 0.63rem;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.85s ease, transform 0.85s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      nav { padding: 18px 28px; }
+      .nav-links { gap: 24px; }
+      .photo-strip { grid-template-columns: 1fr 1fr; height: auto; }
+      .photo-strip-item { height: 200px; }
+      .service-row, .service-row.reverse { grid-template-columns: 1fr; direction: ltr; }
+      .service-img { height: 300px; }
+      .service-content { padding: 50px 36px; }
+      .gallery-3 { grid-template-columns: 1fr; }
+      .gallery-3-item { height: 220px; }
+      .uniform-inner { grid-template-columns: 1fr; gap: 40px; }
+      .uniform-img { height: 320px; }
+      .section, .uniform-section, .cta-section { padding: 70px 28px; }
+      footer { flex-direction: column; gap: 14px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Elite Banquet Staffing</div>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO — NYC Skyline Background -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Our Services — New York City</p>
+      <h1>Staff that <em>elevates</em><br>every occasion.</h1>
+      <div class="hero-divider"></div>
+      <p class="hero-sub">Bespoke banquet professionals trained to exceed the expectations of the most discerning clientele across New York.</p>
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- QUOTE STRIP -->
+  <div class="quote-strip">
+    <p>"We deliver staffing excellence with precision, poise, and an unwavering commitment to the art of hospitality."</p>
+  </div>
+
+  <!-- PHOTO STRIP — Waitstaff -->
+  <div class="photo-strip">
+    <div class="photo-strip-item">
+      <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?w=600&q=80" alt="Elegant waiter in tuxedo" loading="lazy"/>
+      <span class="photo-label">Our Team</span>
+    </div>
+    <div class="photo-strip-item">
+      <img src="https://images.unsplash.com/photo-1559329007-40df8a9345d8?w=600&q=80" alt="Professional banquet server" loading="lazy"/>
+      <span class="photo-label">Banquet Service</span>
+    </div>
+    <div class="photo-strip-item">
+      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="Fine dining service" loading="lazy"/>
+      <span class="photo-label">Fine Dining</span>
+    </div>
+    <div class="photo-strip-item">
+      <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600&q=80" alt="Elegant event service" loading="lazy"/>
+      <span class="photo-label">Events</span>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <div style="max-width:1260px; margin: 80px auto; padding: 0 60px;">
+    <p class="section-label fade-in">What We Offer</p>
+  </div>
+
+  <!-- SERVICE 1: BANQUET CAPTAINS -->
+  <div style="max-width:1260px; margin: 0 auto 3px; padding: 0 60px;">
+    <div class="service-row fade-in">
+      <div class="service-img">
+        <img src="https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?w=800&q=80" alt="Banquet captain overseeing event" loading="lazy"/>
+      </div>
+      <div class="service-content">
+        <div class="service-num">01</div>
+        <h2 class="service-title">Banquet Captains</h2>
+        <p class="service-tagline">Command · Precision · Presence</p>
+        <div class="service-divider"></div>
+        <div class="service-body">
+          <p>Our Banquet Captains are the architects of flawless events. With extreme attention to detail, they oversee every element of the floor — from the precise arrangement of table settings to the seamless flow of service.</p>
+          <p>They lead and manage all floor staff, ensuring each team member is properly uniformed, professionally presented, and delivering the level of service your guests deserve. When perfection is non-negotiable, our captains are in command.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICE 2: BANQUET SERVERS -->
+  <div style="max-width:1260px; margin: 0 auto 80px; padding: 0 60px;">
+    <div class="service-row reverse fade-in">
+      <div class="service-img">
+        <img src="https://images.unsplash.com/photo-1530062845289-9109b2c9c868?w=800&q=80" alt="Professional banquet waitress in uniform" loading="lazy"/>
+      </div>
+      <div class="service-content">
+        <div class="service-num">02</div>
+        <h2 class="service-title">Banquet Servers</h2>
+        <p class="service-tagline">Grace · Expertise · Excellence</p>
+        <div class="service-divider"></div>
+        <div class="service-body">
+          <p>First impressions are everything. Our Banquet Servers arrive fully trained, immaculately presented, and ready to perform under the pressure of even the most exclusive events. Their professionalism is a direct reflection of your brand.</p>
+          <p>From intimate VIP gatherings to grand-scale banquets, our servers bring grace and efficiency to every table. We understand that the quality of service is what guests remember long after the evening ends.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NYC SKYLINE BANNER 1 -->
+  <div class="skyline-banner fade-in">
+    <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=1800&q=80" alt="New York City skyline" loading="lazy"/>
+    <div class="skyline-overlay">
+      <p class="skyline-label">Serving New York City & Surrounding Areas</p>
+      <h2>Setting the standard<br>for <em>New York</em> hospitality.</h2>
+    </div>
+  </div>
+
+  <!-- PHOTO GALLERY 3-col: More Staff -->
+  <div class="gallery-3">
+    <div class="gallery-3-item fade-in">
+      <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?w=700&q=80" alt="Waiter serving at banquet" loading="lazy"/>
+    </div>
+    <div class="gallery-3-item fade-in">
+      <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=700&q=80" alt="Elegant table setting" loading="lazy"/>
+    </div>
+    <div class="gallery-3-item fade-in">
+      <img src="https://images.unsplash.com/photo-1578474846511-04ba529f0b88?w=700&q=80" alt="Formal event service" loading="lazy"/>
+    </div>
+  </div>
+
+  <!-- UNIFORM SECTION -->
+  <div class="uniform-section">
+    <div class="uniform-inner">
+      <div class="fade-in">
+        <p class="section-label">Appearance Standards</p>
+        <h2>Dressed for <em>distinction.</em></h2>
+        <p>Our staff arrives in a refined, standardized uniform that communicates professionalism from the moment they walk through your doors. Every detail of their presentation is considered — because your event deserves nothing less.</p>
+        <ul class="uniform-list">
+          <li>Tuxedo trousers — impeccably pressed</li>
+          <li>Formal tuxedo dress shirt</li>
+          <li>Classic black bow tie</li>
+          <li>Black backless tuxedo vest</li>
+          <li>Custom uniform requests accommodated</li>
+        </ul>
+      </div>
+      <div class="uniform-img fade-in">
+        <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?w=800&q=80" alt="Waiter in tuxedo uniform" loading="lazy"/>
+      </div>
+    </div>
+  </div>
+
+  <!-- NYC SKYLINE 2 — Wide -->
+  <div class="skyline-wide fade-in">
+    <img src="https://images.unsplash.com/photo-1534430480872-3498386e7856?w=1800&q=80" alt="New York City night skyline" loading="lazy"/>
+    <div class="skyline-wide-text">
+      <p>"Where New York's finest events meet New York's finest staff."</p>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <h2>Ready to elevate<br>your <em>next event?</em></h2>
+    <p>Let us provide the standard of service your guests will never forget.</p>
+    <a href="#" class="cta-btn"><span>Get in Touch</span></a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Elite Banquet Staffing</div>
+    <div class="footer-copy">© 2026 Elite Banquet Staffing — All Rights Reserved</div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
